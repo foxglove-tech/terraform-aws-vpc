@@ -88,24 +88,44 @@ output "private_subnets_ipv6_cidr_blocks" {
   value       = aws_subnet.private.*.ipv6_cidr_block
 }
 
-output "public_subnets" {
+output "public-app_subnets" {
   description = "List of IDs of public subnets"
-  value       = aws_subnet.public.*.id
+  value       = aws_subnet.public-app.*.id
 }
 
-output "public_subnet_arns" {
+output "public-network_subnets" {
+  description = "List of IDs of public subnets"
+  value       = aws_subnet.public-network.*.id
+}
+
+output "public-app_subnet_arns" {
   description = "List of ARNs of public subnets"
-  value       = aws_subnet.public.*.arn
+  value       = aws_subnet.public-app.*.arn
 }
 
-output "public_subnets_cidr_blocks" {
+output "public-network_subnet_arns" {
+  description = "List of ARNs of public subnets"
+  value       = aws_subnet.public-network.*.arn
+}
+
+output "public-app_subnets_cidr_blocks" {
   description = "List of cidr_blocks of public subnets"
-  value       = aws_subnet.public.*.cidr_block
+  value       = aws_subnet.public-app.*.cidr_block
 }
 
-output "public_subnets_ipv6_cidr_blocks" {
+output "public-network_subnets_cidr_blocks" {
+  description = "List of cidr_blocks of public subnets"
+  value       = aws_subnet.public-network.*.cidr_block
+}
+
+output "public-app_subnets_ipv6_cidr_blocks" {
   description = "List of IPv6 cidr_blocks of public subnets in an IPv6 enabled VPC"
-  value       = aws_subnet.public.*.ipv6_cidr_block
+  value       = aws_subnet.public-app.*.ipv6_cidr_block
+}
+
+output "public-network_subnets_ipv6_cidr_blocks" {
+  description = "List of IPv6 cidr_blocks of public subnets in an IPv6 enabled VPC"
+  value       = aws_subnet.public-network.*.ipv6_cidr_block
 }
 
 output "database_subnets" {
@@ -303,9 +323,14 @@ output "intra_route_table_association_ids" {
   value       = aws_route_table_association.intra.*.id
 }
 
-output "public_route_table_association_ids" {
-  description = "List of IDs of the public route table association"
-  value       = aws_route_table_association.public.*.id
+output "public-app_route_table_association_ids" {
+  description = "List of IDs of the public-app route table association"
+  value       = aws_route_table_association.public-app.*.id
+}
+
+output "public-network_route_table_association_ids" {
+  description = "List of IDs of the public-network route table association"
+  value       = aws_route_table_association.public-network.*.id
 }
 
 output "nat_ids" {
@@ -417,14 +442,24 @@ output "default_vpc_main_route_table_id" {
   value       = concat(aws_default_vpc.this.*.main_route_table_id, [""])[0]
 }
 
-output "public_network_acl_id" {
+output "public-app_network_acl_id" {
   description = "ID of the public network ACL"
-  value       = concat(aws_network_acl.public.*.id, [""])[0]
+  value       = concat(aws_network_acl.public-app.*.id, [""])[0]
 }
 
-output "public_network_acl_arn" {
+output "public-app_network_acl_arn" {
   description = "ARN of the public network ACL"
-  value       = concat(aws_network_acl.public.*.arn, [""])[0]
+  value       = concat(aws_network_acl.public-app.*.arn, [""])[0]
+}
+
+output "public-network_network_acl_id" {
+  description = "ID of the public network ACL"
+  value       = concat(aws_network_acl.public-network.*.id, [""])[0]
+}
+
+output "public-network_network_acl_arn" {
+  description = "ARN of the public network ACL"
+  value       = concat(aws_network_acl.public-network.*.arn, [""])[0]
 }
 
 output "private_network_acl_id" {
